@@ -46,7 +46,6 @@ CREATE TABLE "payment" (
     "is_paid" BOOLEAN NOT NULL DEFAULT false,
     "is_deliveredn" BOOLEAN NOT NULL DEFAULT false,
     "ProductId" INTEGER NOT NULL,
-    "cartId" INTEGER NOT NULL,
 
     CONSTRAINT "payment_pkey" PRIMARY KEY ("id")
 );
@@ -55,7 +54,7 @@ CREATE TABLE "payment" (
 CREATE TABLE "subCatagory" (
     "subatCagoryId" SERIAL NOT NULL,
     "type" TEXT NOT NULL,
-    "img" TEXT NOT NULL DEFAULT 'https://unsplash.com/photos/1SAnrIxw5OY',
+    "img" TEXT NOT NULL,
     "CagoryId" INTEGER NOT NULL,
     "userId" INTEGER NOT NULL,
 
@@ -91,9 +90,6 @@ ALTER TABLE "payment" ADD CONSTRAINT "payment_ProductId_fkey" FOREIGN KEY ("Prod
 
 -- AddForeignKey
 ALTER TABLE "payment" ADD CONSTRAINT "payment_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("userId") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "payment" ADD CONSTRAINT "payment_cartId_fkey" FOREIGN KEY ("cartId") REFERENCES "cart"("cartId") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "subCatagory" ADD CONSTRAINT "subCatagory_CagoryId_fkey" FOREIGN KEY ("CagoryId") REFERENCES "catagory"("CagoryId") ON DELETE CASCADE ON UPDATE CASCADE;
